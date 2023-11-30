@@ -1,0 +1,115 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Products",
+    "dateExported": "2023-11-02T03:41:21.207Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "d66d721d-02ff-467c-b5bd-d716ebcc4970",
+            "colId": "d6148b69-5c64-4cfc-8582-0008e5178390",
+            "containerId": "",
+            "name": "http://localhost:8084/api/products",
+            "url": "http://localhost:8084/api/products/6538936ada4bdeef8f482bea",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-09-27T15:20:37.110Z",
+            "modified": "2023-10-26T01:05:09.470Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "3befe316-d1a8-4da4-88b1-4bb859f2e70d",
+            "colId": "d6148b69-5c64-4cfc-8582-0008e5178390",
+            "containerId": "",
+            "name": "http://localhost:8084/api/products/1",
+            "url": "http://localhost:8084/api/products/653933f2f067b3e246aab303",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2023-09-27T15:21:05.272Z",
+            "modified": "2023-10-25T23:48:19.439Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\"thumbnails\":[\"https://clipart-library.com/images/6Troy4q7c.png\"]\n}                                                                                                                                                                                 ",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bfbc4af3-b2ea-4393-a25f-7a3d3f57f151",
+            "colId": "d6148b69-5c64-4cfc-8582-0008e5178390",
+            "containerId": "",
+            "name": "http://localhost:8084/api/products?limit=2",
+            "url": "http://localhost:8084/api/products?limit=1&page=1&sort=-1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-09-27T15:21:12.954Z",
+            "modified": "2023-11-02T02:34:54.423Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "sort",
+                    "value": "-1",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Teclado Mecanico Redragon \",\n  \"description\":\"Kumara\",\n  \"code\":\"cde124\",\n  \"price\":60,\n  \"stock\":115,\n  \"category\":\"teclado\",\n  \"thumbnails\":[]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a8c6d76e-66a5-4175-8b9a-5be6fc39e92c",
+            "colId": "d6148b69-5c64-4cfc-8582-0008e5178390",
+            "containerId": "",
+            "name": "http://localhost:8084/api/products/",
+            "url": "http://localhost:8084/api/products/6538937fda4bdeef8f482bee",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-09-27T15:21:18.582Z",
+            "modified": "2023-10-25T17:46:35.165Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Teclado Mecanico Redragon \",\n  \"description\":\"Kumara\",\n  \"code\":\"cde124\",\n  \"price\":60,\n  \"stock\":115,\n  \"category\":\"teclado\",\n  \"thumbnails\":[]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d08b8c59-c799-48ed-83dd-99885945891c",
+            "colId": "d6148b69-5c64-4cfc-8582-0008e5178390",
+            "containerId": "",
+            "name": "http://localhost:8084/api/products/",
+            "url": "http://localhost:8084/api/products/",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-09-27T15:21:23.766Z",
+            "modified": "2023-10-26T00:56:44.180Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\":\"Smartphone\",\n  \"description\":\"Samsung\",\n  \"code\":\"port12\",\n  \"price\":3500,\n  \"stock\":5,\n  \"category\":\"celulares\",\n  \"thumbnails\":[\"https://cdn-iibml.nitrocdn.com/mIsZFyqRlkiNfZRugfIBKtdyexDtafZx/assets/images/optimized/rev-99e5996/image/cache/catalog/products_2023/samsung-galaxy-a14-black-1-800x800.png\"]\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
