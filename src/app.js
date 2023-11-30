@@ -9,13 +9,37 @@ import { messagesManager } from "./dao/models/mongoose/MessagesManager.js";
 import { productsManager } from "./dao/models/mongoose/ProductsManager.js";
 //DB
 import "./config/database/mongoose/configDB.js";
+
+import cookieParser from "cookie-parser";
+import passport from "passport";
+import "./passport.js";
+
 //configuracion del servidor
 const app = express();
-const PORT = 8084;
+const PORT = 8080;
+
+
+
+const URI ="mongodb+srv://gomezse:root@ecommerce.sp5zu8k.mongodb.net/";
+
+app.use(
+  session({
+     store: new MongoStore({
+      mongoUrl: URI,
+    }),
+    secret: "secretSession",
+    cookie: { maxAge: 90000 },
+  })
+);
+
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(cookieParser());
+app.use(passport.initialize());
 
 // handlebars
 app.engine("handlebars", engine());
@@ -26,6 +50,7 @@ app.set("view engine", "handlebars");
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/sessions");
 app.use("/", viewsRouter);
 
 const httpServer= app.listen(PORT, () => {
