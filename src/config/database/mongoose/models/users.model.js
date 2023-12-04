@@ -15,14 +15,14 @@ const usersSchema = new mongoose.Schema({
     unique: true,
   },
   age: {
-    type: Number,        
-    default:18
+    type: Number,
+    default: 18
   },
   password: {
     type: String,
     required: true,
   },
-  cart:{
+  cart: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "cart",
     default: null,
@@ -36,8 +36,8 @@ const usersSchema = new mongoose.Schema({
 });
 
 
-usersSchema.pre('find',function(){
-    this.populate('cart');
+usersSchema.pre('find', function () {
+  this.populate('cart');
 })
 
 

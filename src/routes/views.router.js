@@ -64,7 +64,16 @@ router.get("/restaurar", (req, res) => {
     res.render("restaurar");
   });
   
+
   router.get("/error", (req, res) => {
-    res.render("error");
+    const message = req;
+
+    res.render("error",{message:message});
+  });
+
+  router.get("/error-login", (req, res) => {
+    const message = req;
+    console.log('reqqqq',req);
+    res.render("error_login",{message:message});
   });
 export default router;

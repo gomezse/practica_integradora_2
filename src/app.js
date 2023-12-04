@@ -1,16 +1,23 @@
+//express
 import express from "express";
 import { __dirname } from "./utils.js";
 import { engine } from "express-handlebars";
 import { Server } from 'socket.io';
+import session from "express-session";
+//router
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
+import sessionsRouter from './routes/sessions.router.js';
 import viewsRouter from './routes/views.router.js';
+//managers
 import { messagesManager } from "./dao/models/mongoose/MessagesManager.js";
 import { productsManager } from "./dao/models/mongoose/ProductsManager.js";
 //DB
 import "./config/database/mongoose/configDB.js";
-
+import MongoStore from "connect-mongo";
+//cookie
 import cookieParser from "cookie-parser";
+//passport
 import passport from "passport";
 import "./passport.js";
 
@@ -50,7 +57,7 @@ app.set("view engine", "handlebars");
 
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
-app.use("/api/sessions");
+app.use("/api/sessions",sessionsRouter);
 app.use("/", viewsRouter);
 
 const httpServer= app.listen(PORT, () => {
