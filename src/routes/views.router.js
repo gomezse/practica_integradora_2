@@ -43,16 +43,12 @@ router.get("/signup", (req, res) => {
     res.render("signup");
 });
 
-router.get("/profile", async (req, res) => {
-  console.log('logueo con git 1');  
+router.get("/profile", async (req, res) => {  
   if (!req.session.passport) {
         return res.redirect("/login");
     }
-    console.log('logueo con git 2');
-    const user = await  usersManager.findById(req.session.passport.user);
-    console.log('logueo con git 3');
-    
-    console.log('user',user);
+
+    const user = await  usersManager.findById(req.session.passport.user);        
     const products = await productsManager.findAll(req.query);
 
     if (!products.payload.length) {
@@ -78,8 +74,7 @@ router.get("/restaurar", (req, res) => {
   });
 
   router.get("/error-login", (req, res) => {
-    const message = req;
-    console.log('reqqqq',req);
+    const message = req;    
     res.render("error_login",{message:message});
   });
 export default router;

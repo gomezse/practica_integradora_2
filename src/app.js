@@ -9,6 +9,7 @@ import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import viewsRouter from './routes/views.router.js';
+import usersRouter from './routes/users.router.js';
 //managers
 import { messagesManager } from "./dao/models/mongoose/MessagesManager.js";
 import { productsManager } from "./dao/models/mongoose/ProductsManager.js";
@@ -58,6 +59,7 @@ app.set("view engine", "handlebars");
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/sessions",sessionsRouter);
+app.use("/api/users", usersRouter);
 app.use("/", viewsRouter);
 
 const httpServer= app.listen(PORT, () => {

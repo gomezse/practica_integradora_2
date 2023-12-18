@@ -123,7 +123,7 @@ class CartsManager {
            }else{
                 return new Error('Products not found in cart');
            }
-            console.log(cart.products);
+            // console.log(cart.products);
             return await cart.save();
 
         } catch (error) {

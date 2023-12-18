@@ -80,7 +80,7 @@ passport.use(
         }
   
         const userDB = await usersManager.findByEmail(email);
-                
+
         if (userDB) {
           if (userDB.isGitHub) {            
             return done(null, userDB);
@@ -118,10 +118,9 @@ passport.use(
       callbackURL: "http://localhost:8080/api/sessions/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
-      try {
-        // console.log('PROFILE: ',profile );
+      try {        
         const userDB = await usersManager.findByEmail(profile._json.email);
-        // console.log('userDB',userDB);
+        
         // login
         if (userDB) {
           if (userDB.isGoogle) {

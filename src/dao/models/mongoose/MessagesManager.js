@@ -13,8 +13,7 @@ async getMessages() {
 }
 
 async createOne(message) {
-    try {
-        console.log('entro al create message');
+    try {    
         const newMessage = await messagesModel.create(message);
 
         return newMessage;
