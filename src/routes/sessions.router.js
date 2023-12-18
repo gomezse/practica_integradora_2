@@ -45,7 +45,7 @@ router.post("/login", async (req, res) => {
     
     res
       .status(200)
-      .cookie("token", token, { httpOnly: true })
+      .cookie("token", token, { httpOnly: true })      
       .json({ message: "Bienvenido a la pagina: ", token });
   } catch (error) {
     console.log(error);
@@ -75,8 +75,7 @@ router.get(
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/error" }),
-  (req, res) => {    
-    console.log(req);
+  (req, res) => {        
     res.redirect("/profile");
   }
 );

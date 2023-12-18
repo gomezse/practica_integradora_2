@@ -16,7 +16,7 @@ const usersSchema = new mongoose.Schema({
   },
   age: {
     type: Number,
-    default: 18
+    default: 18,
   },
   password: {
     type: String,
@@ -26,8 +26,15 @@ const usersSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: "cart",
     default: null,
-  }
-  ,
+  },
+  isGitHub: {
+    type: Boolean,
+    default: false,
+  },
+  isGoogle: {
+    type: Boolean,
+    default: false,
+  },
   role: {
     type: String,
     enum: ["ADMIN", "PREMIUM", "USER"],
@@ -35,10 +42,8 @@ const usersSchema = new mongoose.Schema({
   },
 });
 
-
-usersSchema.pre('find', function () {
-  this.populate('cart');
-})
-
+usersSchema.pre("find", function () {
+  this.populate("cart");
+});
 
 export const usersModel = mongoose.model("Users", usersSchema);

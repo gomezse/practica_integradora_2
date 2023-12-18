@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { productsManager } from "../dao/models/mongoose/ProductsManager.js"
 import { cartsManager } from "../dao/models/mongoose/CartsManager.js";
+import { usersManager } from "../dao/models/mongoose/UsersManager.js";
 
 const router = Router();
 
@@ -43,21 +44,26 @@ router.get("/signup", (req, res) => {
 });
 
 router.get("/profile", async (req, res) => {
-    if (!req.session.passport) {
+  console.log('logueo con git 1');  
+  if (!req.session.passport) {
         return res.redirect("/login");
     }
-
-    //obtengo listado de productos.
+    console.log('logueo con git 2');
+    const user = await  usersManager.findById(req.session.passport.user);
+    console.log('logueo con git 3');
+    
+    console.log('user',user);
     const products = await productsManager.findAll(req.query);
 
     if (!products.payload.length) {
         return res.status(200).json({ message: 'No products' });
-    }
-
+    } 
+    
     const { payload } = products;
+    
+    
     const productsObject = payload.map(product => product.toObject());
-
-    res.render("profile", { products: productsObject, user: req.user.toObject() });
+    res.render("profile", { products: productsObject, user: req.user?req.user:user.toObject() });
 });
 
 router.get("/restaurar", (req, res) => {

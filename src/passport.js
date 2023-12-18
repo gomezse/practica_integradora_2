@@ -72,22 +72,20 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       try {
 
-        // Verificar si existen emails en el perfil de GitHub
-        
-        const email = (profile.emails && profile.emails.length > 0) ? profile.emails[0].value : null;
       
+        const email = (profile.emails && profile.emails.length > 0) ? profile.emails[0].value : null;
+  
         if (!email) {
           return done(null, false, { message: 'No se proporcionó un correo electrónico.' });
         }
-
-        const userDB = await usersManager.findByEmail(email);
-     
-        if (userDB) {
-          if (userDB.isGithub) {
   
+        const userDB = await usersManager.findByEmail(email);
+                
+        if (userDB) {
+          if (userDB.isGitHub) {            
             return done(null, userDB);
-          } else {
-            return done(null, false, { message: 'La cuenta ya existe pero no se registró a través de GitHub.' });
+          } else {            
+            return done(null, userDB, { message: 'La cuenta ya existe pero no se registró a través de GitHub.' });
           }
         }
 
@@ -115,13 +113,15 @@ passport.use(
   "google",
   new GoogleStrategy(
     {
-      clientID: "Iv1.95547a8d5e7ca361",
-      clientSecret: "88a80637856a1083bffcebea11490c213cbf5690",
+      clientID: "1083132343292-qed9pr5e92ad2idicmf05m4fmm7sod71.apps.googleusercontent.com",
+      clientSecret: "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",
       callbackURL: "http://localhost:8080/api/sessions/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
       try {
+        // console.log('PROFILE: ',profile );
         const userDB = await usersManager.findByEmail(profile._json.email);
+        // console.log('userDB',userDB);
         // login
         if (userDB) {
           if (userDB.isGoogle) {
@@ -130,15 +130,17 @@ passport.use(
             return done(null, false);
           }
         }
+        const hashedPassword = await hashData('12345');
         // signup
         const infoUser = {
           first_name: profile._json.given_name,
           last_name: profile._json.family_name,
           email: profile._json.email,
-          password: " ",
+          password: hashedPassword,
           isGoogle: true,
         };
         const createdUser = await usersManager.createOne(infoUser);
+        // console.log(createdUser);
         done(null, createdUser);
       } catch (error) {
         done(error);
