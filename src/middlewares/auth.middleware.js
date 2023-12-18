@@ -1,5 +1,6 @@
 
 export const authMiddleware = (roles) => {  
+  console.log('llego')
     return (req, res, next) => {
       if (roles.includes("PUBLIC")) {      
         return next();

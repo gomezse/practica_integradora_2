@@ -91,11 +91,12 @@ router.get("/signout", (req, res) => {
 
 router.get(
   "/current",
-  passport.authenticate("jwt",{ session: false , failureRedirect: "/error" }),
-  authMiddleware(["ADMIN"]),
+  passport.authenticate("jwt",{ session: false }),
+  authMiddleware(["PUBLIC"]),
   async (req, res) => {
    
     const user = req.user;
+    console.log('Usuario',user);
     res.json({ message:user });
   }
 );

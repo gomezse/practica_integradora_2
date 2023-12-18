@@ -3,6 +3,7 @@ import { Router } from "express";
 import { productsManager } from "../dao/models/mongoose/ProductsManager.js"
 import { cartsManager } from "../dao/models/mongoose/CartsManager.js";
 import { usersManager } from "../dao/models/mongoose/UsersManager.js";
+import { jwtValidation } from "../middlewares/jwt.middleware.js";
 
 const router = Router();
 
@@ -62,7 +63,7 @@ router.get("/profile", async (req, res) => {
     res.render("profile", { products: productsObject, user: req.user?req.user:user.toObject() });
 });
 
-router.get("/restaurar", (req, res) => {
+router.get("/restaurar",jwtValidation, (req, res) => {
     res.render("restaurar");
   });
   

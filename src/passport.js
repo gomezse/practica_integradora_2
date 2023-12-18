@@ -157,7 +157,8 @@ passport.use(
   "jwt",
   new JWTStrategy(
     {      
-      jwtFromRequest: ExtractJwt.fromExtractors([fromCookies]),
+      // jwtFromRequest: ExtractJwt.fromExtractors([fromCookies]),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: "secretJWT",
     },
     async function (jwt_payload, done) {
